@@ -3,8 +3,11 @@ package com.springboot.learn.controller;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -14,12 +17,13 @@ import com.springboot.learn.entity.Topic;
 import com.springboot.learn.service.TopicService;
 
 @RestController
+@RequestMapping("/api")
 public class TopicController {
 	
 	@Autowired
 	TopicService topicService;
 	
-	@RequestMapping("/topics")
+	@GetMapping("/topics")
 	public List<Topic> getAllTopics(){
 		return topicService.getAllToics();
 	}
@@ -29,9 +33,24 @@ public class TopicController {
 		return topicService.getTopic(id);
 	}
 	
-	@RequestMapping(value="/topics", method=RequestMethod.POST)
+	@PostMapping(value="/topics")
 	public void addTopic(@RequestBody Topic topic){
 		topicService.addTopic(topic);
+	}
+	
+	@DeleteMapping(value="/topics/{id}")
+	public void deleteTopic(@PathVariable String id){
+		topicService.deleteTopic(id);
+	}
+	
+	@DeleteMapping(value="/topics")
+	public void deleteAllTopic(){
+		topicService.deleteAllTopic();
+	}
+	
+	@PutMapping(value="/topics/")
+	public void updateTopic(@RequestBody Topic topic){
+		topicService.updateTopic(topic);
 	}
 
 }

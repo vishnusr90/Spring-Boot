@@ -2,18 +2,22 @@ package com.springboot.learn.exception;
 
 import java.util.Date;
 
+import org.springframework.http.HttpStatus;
+
 public class ErrorDetails {
 	
-	  private Date timestamp;
-	  private String message;
-	  private String details;
-
-	  public ErrorDetails(Date timestamp, String message, String details) {
+	private Date timestamp;
+	private String message;
+	private String details;
+	private HttpStatus status;
+	
+	public ErrorDetails(Date timestamp, String message, String details, HttpStatus status) {
 	    super();
 	    this.timestamp = timestamp;
 	    this.message = message;
 	    this.details = details;
-	  }
+	    this.status = status;
+	}
 
 	public Date getTimestamp() {
 		return timestamp;
@@ -38,5 +42,12 @@ public class ErrorDetails {
 	public void setDetails(String details) {
 		this.details = details;
 	}
-	  
+
+	public HttpStatus getStatus() {
+		return status;
+	}
+
+	public void setStatus(HttpStatus status) {
+		this.status = status;
+	}
 }

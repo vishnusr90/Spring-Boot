@@ -2,22 +2,22 @@ package com.springboot.learn.entity;
 
 public class Topic {
 	
-	private int id;
+	private String id;
 	private String name;
 	
 	public Topic(){
 		super();
 	}
 	
-	public Topic(int id, String name){
+	public Topic(String id, String name){
 		this.id = id;
 		this.name = name;
 	}
 	
-	public int getId() {
+	public String getId() {
 		return id;
 	}
-	public void setId(int id) {
+	public void setId(String id) {
 		this.id = id;
 	}
 	public String getName() {
@@ -26,7 +26,5 @@ public class Topic {
 	public void setName(String name) {
 		this.name = name;
 	}
-	
-	
 
 }
