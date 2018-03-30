@@ -20,8 +20,8 @@ public class TopicController {
 	TopicService topicService;
 	
 	@RequestMapping("/topics")
-	public List<Topic> getAllCourses(){
-		return topicService.getAllCourses();
+	public List<Topic> getAllTopics(){
+		return topicService.getAllToics();
 	}
 	
 	@GetMapping("/topics/{id}")
