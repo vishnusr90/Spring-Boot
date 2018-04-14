@@ -1,61 +1,41 @@
 package com.springboot.learn.service;
 
-import java.util.ArrayList;
-import java.util.List;
-
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.springboot.learn.entity.Topic;
+import com.springboot.learn.repository.TopicRepository;
 
 @Service
 public class TopicService {
 	
-	List<Topic> topics = new ArrayList<Topic>();
-	{
-		topics.add(new Topic("1", "Java"));
-		topics.add(new Topic("2", "Pub Sub"));
-		topics.add(new Topic("3", "Spring"));
-		topics.add(new Topic("4", "Hibernate"));
-		topics.add(new Topic("5", "REST"));
-		topics.add(new Topic("6", "SQL"));
-		topics.add(new Topic("7", "Big Query"));
-		topics.add(new Topic("8", "Data flow"));
+	@Autowired
+	private TopicRepository topicRepo;
 	
+	public Iterable<Topic> getAllToics() {
+		return topicRepo.findAll();
 	}
 
-	public List<Topic> getAllToics() {
-		return this.topics;
+	public Topic getTopic(Integer id) {
+		return topicRepo.findOne(id);
 	}
 
-	public Topic getTopic(String id) {
-
-		return topics.stream()
-					 .filter(s -> s.getId().equals(id))
-					 .findFirst()
-					 .get();
+	public Topic addTopic(Topic topic) {
+		return topicRepo.save(topic);
 	}
 
-	public void addTopic(Topic topic) {
-		topics.add(topic);
+	public void deleteTopic(Integer id) {
+		topicRepo.delete(id);
 	}
 
-	public void deleteTopic(String id) {
-		topics.removeIf(t -> t.getId().equals(id));
-	}
-
-	public void updateTopic(Topic topic) {
-		
-		for(int i=0;i<topics.size();i++){
-			if(topics.get(i).getId().equals(topic.getId())){
-				topics.set(i, topic);
-				return;
-			}
+	public Topic updateTopic(Topic topic) {
+		if(!topicRepo.exists(topic.getId())){
+			return topicRepo.save(topic);
 		}
+		return null;
 	}
 
 	public void deleteAllTopic() {
-		System.out.println("Before : "+topics.size());
-		topics.clear();
-		System.out.println("After : "+topics.size());
+		topicRepo.deleteAll();
 	}
 }

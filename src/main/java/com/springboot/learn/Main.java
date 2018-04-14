@@ -1,12 +1,7 @@
 package com.springboot.learn;
 
-import java.util.Arrays;
-import java.util.List;
-
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-
-import com.springboot.learn.entity.Topic;
 
 @SpringBootApplication
 public class Main {
