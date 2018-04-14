@@ -13,13 +13,13 @@ public class TopicService {
 	List<Topic> topics = new ArrayList<Topic>();
 	{
 		topics.add(new Topic("1", "Java"));
-		topics.add(new Topic("1", "Java"));
-		topics.add(new Topic("2", "Spring"));
-		topics.add(new Topic("3", "Hibernate"));
-		topics.add(new Topic("4", "REST"));
-		topics.add(new Topic("5", "SQL"));
-		topics.add(new Topic("6", "Big Query"));
-		topics.add(new Topic("7", "Data flow"));
+		topics.add(new Topic("2", "Pub Sub"));
+		topics.add(new Topic("3", "Spring"));
+		topics.add(new Topic("4", "Hibernate"));
+		topics.add(new Topic("5", "REST"));
+		topics.add(new Topic("6", "SQL"));
+		topics.add(new Topic("7", "Big Query"));
+		topics.add(new Topic("8", "Data flow"));
 	
 	}
 
@@ -27,7 +27,7 @@ public class TopicService {
 		return this.topics;
 	}
 
-	public Topic getTopic(int id) {
+	public Topic getTopic(String id) {
 
 		return topics.stream()
 					 .filter(s -> s.getId().equals(id))
